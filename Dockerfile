@@ -7,10 +7,10 @@ COPY vector.yaml /vector/vector.yaml
 
 # install vector
 RUN apt-get update 
-RUN apt-get install -y  curl
+RUN apt-get install -y  curl apt-utils
 RUN curl -1sLf \
       'https://repositories.timber.io/public/vector/cfg/setup/bash.deb.sh' \
-      | sudo -E bash
+      | bash
 RUN apt-get install vector
 RUN apt-get update && apt-get install -y ca-certificates tzdata systemd && rm -rf /var/lib/apt/lists/*
 
