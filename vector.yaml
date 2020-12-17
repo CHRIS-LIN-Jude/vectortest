@@ -1,0 +1,24 @@
+---
+api:
+  enabled: true
+  address: 127.0.0.1:8686
+sources:
+  my_source_id:
+    type: vector
+    address: 0.0.0.0:9000
+    shutdown_timeout_secs: 30
+sinks:
+  my_sink_id:
+    type: file
+    inputs :
+      - my_source_id
+    idle_timeout_secs : 1
+    path: "/home/logs/%Y-%m-%d.log"
+    encoding:
+      codec: text
+      only_fields:
+        - file
+        - host
+        - message
+        - timestamp
+      timestamp_format : unix
